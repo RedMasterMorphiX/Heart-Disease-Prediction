@@ -14,7 +14,7 @@ oldpeak_m = 0.946053
 oldpeak_std = 1.035422
 def load_model():
     # Load your trained machine learning model
-    with open('https://github.com/RedMasterMorphiX/Heart-Disease-Prediction/blob/main/model.pkl', 'rb') as file:
+    with open('model.pkl', 'rb') as file:
         model = pickle.load(file)
     return model
 
