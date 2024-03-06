@@ -15,7 +15,7 @@ oldpeak_std = 1.035422
 def load_model():
     # Load your trained machine learning model
     with open('model.pkl', 'wb') as file:
-        model = pickle.load(file)
+        pickle.dump(model, file, protocol=4)
     return model
 
 def main():
