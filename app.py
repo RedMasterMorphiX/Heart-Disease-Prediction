@@ -12,25 +12,26 @@ thalach_m = 151.070175
 thalach_std = 22.492963
 oldpeak_m = 0.946053
 oldpeak_std = 1.035422
+
 def load_model():
     # Load your trained machine learning model
-    with open('model.pkl', 'wb') as file:
-        pickle.dump(model, file, protocol=4)
+    with open('model.pkl', 'rb') as file:
+        model = pickle.load(file)
     return model
 
-def main():
-    st.title('Are You Having Heart Disease!!! Dont Fear, Check Here')
 
-    name = st.text_input('What is your name?')
+def main():
+    st.title('Machine Learning Model Deployment')
+
     age = st.number_input("Enter age")
     age = (age - age_m) / age_std
-    trestbps = st.number_input("Enter Resting blood pressure")
+    trestbps = st.number_input("Enter trestbps")
     trestbps = (trestbps - trestbps_m) / trestbps_std
-    chol = st.number_input("Enter Cholestrol")
+    chol = st.number_input("Enter cholestrol")
     chol = (chol - chol_m) / chol_std
-    thalach = st.number_input("Enter Maximum heart rate achieved")
+    thalach = st.number_input("Enter thalach")
     thalach = (thalach - thalach_m) / thalach_std
-    oldpeak = st.number_input("Enter ST depression induced by exercise relative to rest, example- 1.1,1.2,1.3...")
+    oldpeak = st.number_input("Enter oldpeak")
     oldpeak = (oldpeak - oldpeak_m) / oldpeak_std
 
     sex = st.selectbox("Select gender:", options=['Male', 'Female'])
@@ -41,7 +42,7 @@ def main():
         sex_0 = True
         sex_1 = False
 
-    cp = st.selectbox("Select Constrictive pericarditis:", options=[0, 1, 2, 3])
+    cp = st.selectbox("Select cp:", options=[0, 1, 2, 3])
     if cp == 0:
         cp_0 = True
         cp_1 = False
@@ -63,9 +64,9 @@ def main():
         cp_2 = False
         cp_3 = True
 
-    fbs_0 = st.selectbox("Select Fasting blood sugar:", options=[0])
+    fbs_0 = st.selectbox("Select fbs:", options=[0])
 
-    restecg = st.selectbox("Select Resting electrocardiographic measurement:", options=[0, 1, 2])
+    restecg = st.selectbox("Select resteg:", options=[0, 1, 2])
     if restecg == 0:
         restecg_0 = True
         restecg_1 = False
@@ -79,7 +80,7 @@ def main():
         restecg_1 = False
         restecg_2 = True
 
-    exang = st.selectbox("Select Resting electrocardiographic:", options=[0, 1])
+    exang = st.selectbox("Select exang:", options=[0, 1])
     if exang == 0:
         exang_0 = True
         exang_1 = False
@@ -87,7 +88,7 @@ def main():
         exang_0 = False
         exang_1 = True
 
-    slope = st.selectbox("Select The ST segment shift:", options=[0, 1, 2])
+    slope = st.selectbox("Select slope:", options=[0, 1, 2])
     if slope == 0:
         slope_0 = True
         slope_1 = False
@@ -101,7 +102,7 @@ def main():
         slope_1 = False
         slope_2 = True
 
-    ca = st.selectbox("Select Calcium:", options=[0, 1, 2])
+    ca = st.selectbox("Select ca:", options=[0, 1, 2])
     if ca == 0:
         ca_0 = True
         ca_1 = False
@@ -115,7 +116,7 @@ def main():
         ca_1 = False
         ca_2 = True
 
-    thal = st.selectbox("Select Thalasemia", options=[1, 2, 3])
+    thal = st.selectbox("Select thal:", options=[1, 2, 3])
     if thal == 1:
         thal_1 = True
         thal_2 = False
@@ -145,11 +146,9 @@ def main():
     # Make predictions
     prediction = model.predict(input_array)
 
-    st.write('Hey ', name, end=" ")
-    if prediction==1:
-        st.write('You are having heart disease')
-    else:
-        st.write('You are not having heart disease')
+    # Display prediction
+    st.write(f'The predicted value is: {prediction[0]}')
+
 
 if __name__ == '__main__':
     main()
