@@ -1,9 +1,0 @@
-streamlit
-pickle
-seaborn
-matplotlib
-scipy
-sklearn
-scikit-learn
-knn
-xgboost
