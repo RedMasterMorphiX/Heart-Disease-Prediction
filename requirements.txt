@@ -1,11 +1,9 @@
 streamlit
-pandas
-numpy
 pickle
 seaborn
 matplotlib
 scipy
 sklearn
 scikit-learn
-KNN
+knn
 xgboost
