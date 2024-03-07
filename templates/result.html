@@ -1,0 +1,16 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+</head>
+<body>
+    <h2>Hey, {{ name }}!</h2>
+    {% if prediction == 1 %}
+        <p>You are having heart disease</p>
+    {% else %}
+        <p>You are not having heart disease</p>
+    {% endif %}
+    <a href="/">Go back</a>
+</body>
+</html>
